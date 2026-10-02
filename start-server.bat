@@ -1,0 +1,7 @@
+@echo off
+title Jesper Landberg Portfolio Server
+echo ========================================================
+echo   Launching Jesper Landberg Portfolio at http://localhost:3000
+echo ========================================================
+start "" "http://localhost:3000"
+powershell -NoProfile -Command "$listener = New-Object System.Net.HttpListener; $listener.Prefixes.Add('http://localhost:3000/'); $listener.Start(); Write-Host 'Server running at http://localhost:3000/ (Close this window to stop)'; while ($listener.IsListening) { $context = $listener.GetContext(); $req = $context.Request; $res = $context.Response; $path = $req.Url.LocalPath.TrimStart('/'); if ([string]::IsNullOrEmpty($path)) { $path = 'index.html' }; $file = Join-Path $PWD $path; if (Test-Path $file -PathType Leaf) { $bytes = [System.IO.File]::ReadAllBytes($file); $ext = [System.IO.Path]::GetExtension($file).ToLower(); $mime = 'application/octet-stream'; switch ($ext) { '.html' { $mime = 'text/html' } '.css' { $mime = 'text/css' } '.js' { $mime = 'application/javascript' } '.json' { $mime = 'application/json' } '.png' { $mime = 'image/png' } '.jpg' { $mime = 'image/jpeg' } '.webp' { $mime = 'image/webp' } '.svg' { $mime = 'image/svg+xml' } }; $res.ContentType = $mime; $res.ContentLength64 = $bytes.Length; $res.OutputStream.Write($bytes, 0, $bytes.Length) } else { $res.StatusCode = 404 }; $res.OutputStream.Close() }"

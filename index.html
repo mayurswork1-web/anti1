@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jesper Landberg</title>
+  
+  <meta name="description" content="Swedish design engineer building visually rich, motion-driven websites. Two-time Awwwards Independent of the Year (2022 & 2024).">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jesper Landberg">
+  <meta property="og:description" content="Swedish design engineer building visually rich, motion-driven websites. Two-time Awwwards Independent of the Year (2022 & 2024).">
+  <meta property="og:image" content="https://www.datocms-assets.com/223669/1786435410-share.webp?auto=format&fit=crop&h=630&w=1200">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.datocms-assets.com/223669/1786371616-face.png?auto=format&h=32&w=32">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Custom Fluid Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Intro Minimalist Loader with Pulsing Bars -->
+  <div class="loader-overlay" id="loaderOverlay">
+    <div class="loader-bars">
+      <div class="loader-bar"></div>
+      <div class="loader-bar"></div>
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Ambient Fluid WebGL Distortion Canvas -->
+  <div class="gl">
+    <canvas id="glCanvas"></canvas>
+  </div>
+
+  <!-- Main Fixed Viewport Application -->
+  <div id="app">
+    <!-- UI Nav Header & Footer Overlays -->
+    <nav class="ui-nav" aria-label="Main Navigation">
+      <div class="nav-top">
+        <a href="#" class="brand-link" id="brandLink">Jesper Landberg</a>
+        <button type="button" class="profile-btn" id="profileBtn" aria-label="View Profile">Profile</button>
+      </div>
+
+      <div class="nav-bottom">
+        <div class="view-switcher" role="tablist">
+          <button type="button" class="switch-item active" id="switchFeatured" role="tab" aria-selected="true">Featured</button>
+          <span class="switch-separator" aria-hidden="true">/</span>
+          <button type="button" class="switch-item" id="switchFull" role="tab" aria-selected="false">Full</button>
+        </div>
+        <button type="button" class="newsletter-btn" id="newsletterBtn" aria-label="Open Newsletter Subscription">Newsletter</button>
+      </div>
+    </nav>
+
+    <!-- Main Featured Cards Stage (Horizontal Drag & Inertia Carousel) -->
+    <main class="main-stage" id="mainStage">
+      <div class="cards-track-wrapper" id="cardsTrackWrapper">
+        <div class="cards-track" id="cardsTrack">
+          <!-- Featured project cards dynamically injected by app.js -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Full Index View (/full) -->
+    <section class="full-index-view" id="fullIndexView" aria-label="All Projects Directory">
+      <div class="index-container">
+        <header class="index-header">
+          <span class="index-title">All Projects</span>
+          <span class="index-count">23 Projects</span>
+        </header>
+        <div class="project-list-table" id="projectListTable">
+          <!-- Project directory rows dynamically injected by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Hover Image Preview -->
+    <div class="hover-preview-card" id="hoverPreviewCard" aria-hidden="true"></div>
+
+    <!-- Project Detail Drawer / Showcase Modal -->
+    <div class="project-detail-view" id="projectDetailView" role="dialog" aria-modal="true">
+      <!-- Project detail content dynamically populated by app.js -->
+    </div>
+
+    <!-- Profile Modal Overlay -->
+    <div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-label="Jesper Landberg Profile">
+      <button type="button" class="modal-close-btn" id="closeProfileBtn" aria-label="Close Profile">Close</button>
+      <div class="profile-card">
+        <p class="profile-bio">
+          Jesper Landberg, Swedish design engineer, named Awwwards Independent of the Year in 2022 and 2024, building visually rich, motion-driven websites. Usually lead or sole developer, responsible for front-end architecture, animation, interaction and CMS, alongside international agencies and creative teams.
+        </p>
+        <p class="profile-awards">
+          77 awards — 30× Awwwards, 40× FWA, 3× Webby, 2× Lovie
+        </p>
+        <ul class="profile-links">
+          <li class="profile-link-item">
+            <a href="https://www.instagram.com/jesperlandberg222/" target="_blank" rel="noopener">Instagram</a>
+          </li>
+          <li class="profile-link-item">
+            <a href="https://x.com/jesper_alpacka" target="_blank" rel="noopener">X</a>
+          </li>
+          <li class="profile-link-item">
+            <a href="https://www.linkedin.com/in/jesper-landberg-ba2984256/" target="_blank" rel="noopener">LinkedIn</a>
+          </li>
+          <li class="profile-link-item">
+            <a href="mailto:jesper@alpacka.studio">Email</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Newsletter Modal Overlay -->
+    <div class="newsletter-modal" id="newsletterModal" role="dialog" aria-modal="true" aria-label="Newsletter Subscription">
+      <button type="button" class="modal-close-btn" id="closeNewsletterBtn" aria-label="Close Newsletter">Close</button>
+      <div class="newsletter-card">
+        <p class="newsletter-desc">
+          An occasional newsletter with insights and thoughts from a design engineer, drawn from over a decade of freelancing.
+        </p>
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <div class="input-wrapper">
+            <input 
+              type="email" 
+              name="email" 
+              class="newsletter-input" 
+              placeholder="Email address" 
+              required 
+              autocomplete="email"
+              aria-label="Email address"
+            />
+          </div>
+          <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+        <p class="newsletter-status" id="newsletterStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
